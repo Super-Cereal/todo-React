@@ -1,0 +1,130 @@
+.Notes {
+  margin: 80px 15px 20px;
+}
+
+.Note {
+  color: $white;
+  padding: 15px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 0 0 7px gray;
+  margin-top: 25px;
+  &-Title {
+    margin-bottom: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  &-Subjects {
+    display: flex;
+    flex-direction: column;
+  }
+  &-Hr {
+    width: 100%;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+  }
+  &-AccomplishedTasks {
+    display: flex;
+    flex-direction: column;
+  }
+  &_color {
+    &_orange {
+      background-color: orange;
+    }
+    &_blue {
+      background-color: rgb(139, 208, 218);
+    }
+    &_purple {
+      background-color: rgb(255, 66, 255);
+    }
+    &_red {
+      background-color: rgb(153, 28, 28);
+    }
+  }
+}
+
+.CheckboxLine {
+  display: flex;
+  align-items: center;
+  &:nth-child(n + 2) {
+    margin-top: 12px;
+  }
+  &-Toggle {
+    display: none;
+    &:checked ~ .CheckboxLine-Label::before {
+      background-color: $white;
+    }
+  }
+  &-Label {
+    display: block;
+    user-select: none;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    &::before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+      width: 15px;
+      height: 15px;
+      border: 2px solid $white;
+      border-radius: 20%;
+    }
+  }
+}
+
+.DropDown {
+  margin: 2px;
+  overflow: hidden;
+  &-Toggle {
+    display: none;
+    &:checked {
+      & ~ .DropDown-Content {
+        display: block;
+      }
+      & + .DropDown-Label {
+        &::before {
+          transform: rotate(45deg) translateY(-5px);
+        }
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+  &-Label {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    user-select: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    &::before {
+      margin-left: 5px;
+      margin-right: 15px;
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+      border-right: 2px solid rgba(0, 0, 0, 0.2);
+      transform: rotate(-45deg);
+      text-align: center;
+      -webkit-transition: all 0.4s;
+      -o-transition: all 0.4s;
+      transition: all 0.4s;
+    }
+    &::after {
+      content: attr(data-number);
+      display: inline-block;
+      margin-left: 10px;
+    }
+  }
+  &-Content {
+    display: none;
+    margin-top: 15px;
+    padding-left: 20px;
+    box-sizing: border-box;
+  }
+}

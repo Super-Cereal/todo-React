@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@import "./setup/_mediaMixin.scss";
+
+@import "./setup/_fontsAndColors.scss";
+
+@import "../../components/TopPanel/TopPanel.scss";
+@import "../../components/Notes/Notes.scss";

@@ -1,25 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import TopPanel from "./components/TopPanel/TopPanel";
+import NotesContainer from './components/Notes/NotesContainer';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TopPanel />
+      <NotesContainer />
     </div>
   );
-}
+};
 
 export default App;
