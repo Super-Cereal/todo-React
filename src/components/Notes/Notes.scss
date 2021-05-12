@@ -100,6 +100,9 @@
     user-select: none;
     text-overflow: ellipsis;
     overflow: hidden;
+    &:hover {
+      text-decoration: underline;
+    }
     &::before {
       margin-left: 5px;
       margin-right: 15px;
@@ -128,3 +131,9 @@
     box-sizing: border-box;
   }
 }
+
+@media (hover: none) {
+  .DropDown-Label:hover {
+    text-decoration: none;
+  }
+} ;

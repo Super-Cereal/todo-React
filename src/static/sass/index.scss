@@ -4,8 +4,13 @@
 }
 
 @import "./setup/_mediaMixin.scss";
-
 @import "./setup/_fontsAndColors.scss";
 
+@import "./common/withTransparentBackground.scss";
+
 @import "../../components/TopPanel/TopPanel.scss";
+@import "../../components/TopPanel/HamburgerMenu/HamburgerMenu.scss";
+
 @import "../../components/Notes/Notes.scss";
+
+@import "../../components/AddMenu/AddMenu.scss";

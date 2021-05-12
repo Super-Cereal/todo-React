@@ -11,7 +11,7 @@ const CheckboxLine = ({ id, elemName, elemText }) => (
 
 const DropDownBox = ({ id, title, elems }) => (
   <div className="DropDown">
-    <input type="checkbox" id={`DropDown_${id}`} class="DropDown-Toggle" />
+    <input className="DropDown-Toggle" type="checkbox" id={`DropDown_${id}`} />
     <label className="DropDown-Label" htmlFor={`DropDown_${id}`} data-number={`(${elems.length})`}>
       {title}
     </label>
