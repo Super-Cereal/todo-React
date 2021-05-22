@@ -1,29 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { compose } from "redux";
 import { connect } from "react-redux";
 
-import { toggleAddMenu } from "../../redux/notesReducer";
+import { toggleAddMenu, addNote } from "../../redux/notesReducer";
 import AddMenu from "./AddMenu";
 import withTransparentBackground from "../_HOC/withTransparentBackground";
+import { addMenuOnSelector } from "./../../redux/notesSelector";
 
-class AddMenuContainer extends React.Component {
-  toggleMenu = (event) => {
+const AddMenuContainer = (props) => {
+  const [subjects, setSubjects] = useState([]);
+  const toggleMenu = (event) => {
     let bool = event.currentTarget.checked;
-    this.props.toggleAddMenu(bool);
+    props.toggleAddMenu(bool);
   };
-  render() {
-    return <AddMenu additionalClass={this.props.additionalClass} toggleMenu={this.toggleMenu} />;
-  }
-}
+  const formAddSubject = () => {
+    let id = subjects.length ? subjects[subjects.length - 1].id + 1 : 0;
+    setSubjects([...subjects, { id, text: "" }]);
+  };
+  const formDeleteSubject = (id, clearFields) => () => {
+    clearFields("addNoteForm", true, false, [`subjects.${id}`]);
+    setSubjects(subjects.filter((s) => s.id !== id));
+  };
+  const onSubmit = (data) => {
+    let { title, subjects, color } = data;
+    subjects = subjects.filter((s) => s);
+    props.addNote(title, subjects, color);
+    props.toggleAddMenu(false);
+  };
+
+  return (
+    <AddMenu
+      additionalClass={props.additionalClass}
+      backgroundOn={props.backgroundOn}
+      subjects={subjects}
+      toggleMenu={toggleMenu}
+      formAddSubject={formAddSubject}
+      formDeleteSubject={formDeleteSubject}
+      onSubmit={onSubmit}
+    />
+  );
+};
 
 let mstp = (state) => ({
-  backgroundOn: state.notesPage.addMenuOn,
+  backgroundOn: addMenuOnSelector(state),
 });
 
-let odtp = { toggleAddMenu };
-
 export default compose(
-  connect((s) => ({}), odtp),
+  connect(mstp, { toggleAddMenu, addNote }),
   withTransparentBackground("AddMenu-Toggle", mstp)
 )(AddMenuContainer);

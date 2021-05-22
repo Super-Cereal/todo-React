@@ -1,104 +1,102 @@
 .HamburgerMenu {
-    &-Button {
-      position: relative;
-      display: flex;
-      align-items: center;
-      width: 26px;
-      height: 26px;
-      margin-left: 20px;
-      cursor: pointer;
-      z-index: 10;
-      &:hover::after {
-        content: "";
-        display: block;
-        width: 45px;
-        height: 45px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background-color: rgba(0, 0, 0, 0.15);
-        border-radius: 50%;
-      }
-      & > span,
-      & > span::before,
-      & > span::after {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        background-color: #616161;
-      }
-      & > span::before {
-        content: "";
-        top: -8px;
-      }
-      & > span::after {
-        content: "";
-        top: 8px;
-      }
+  &-Button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    margin-left: 20px;
+    cursor: pointer;
+    z-index: 10;
+    &:hover::after {
+      content: "";
+      display: block;
+      width: 45px;
+      height: 45px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.15);
+      border-radius: 50%;
     }
-    &-Box {
+    & > span,
+    & > span::before,
+    & > span::after {
       display: block;
       position: absolute;
-      top: 0;
-      padding-top: 80px;
-      transform: translate(-100%);
-      width: 250px;
-      height: 100vh;
-      box-sizing: border-box;
-      list-style: none;
-      background-color: #eceff1;
-          box-shadow: 0 0 5px gray;
-
-      z-index: 5;
+      width: 100%;
+      height: 2px;
+      background-color: #616161;
+      transition: transform 0.5s;
     }
-    &-Item > a {
-      display: block;
-      padding: 12px 24px;
-      color: #333;
-      font-family: "Roboto", sans-serif;
-      font-size: 20px;
-      font-weight: 600;
-      text-decoration: none;
-      &:hover {
-        background-color: #cfd8dc;
+    & > span::before {
+      content: "";
+      top: -8px;
+    }
+    & > span::after {
+      content: "";
+      top: 8px;
+      transition: none;
+    }
+  }
+  &-Box {
+    display: block;
+    position: absolute;
+    top: 0;
+    padding-top: 80px;
+    transform: translate(-100%);
+    width: 250px;
+    height: 100vh;
+    box-sizing: border-box;
+    list-style: none;
+    background-color: #eceff1;
+    box-shadow: 0 0 5px gray;
+    transition: transform 0.2s;
+    z-index: 5;
+  }
+  &-Item > a {
+    display: block;
+    padding: 12px 24px;
+    color: #333;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    &:hover {
+      background-color: #cfd8dc;
+    }
+  }
+  &-Toggle {
+    display: none;
+    &:checked {
+      & ~ .HamburgerMenu-Button {
+        & > span {
+          transform: rotate(45deg);
+        }
+        & > span::before {
+          top: 0;
+          transform: rotate(0);
+        }
+        & > span::after {
+          top: 0;
+          transform: rotate(90deg);
+          transition: transform 0.5s;
+        }
       }
-    }
-    &-Toggle {
-      display: none;
-      &:checked {
-        & ~ .HamburgerMenu-Button {
-          & > span {
-            transform: rotate(45deg);
-            transition: transform 0.5s;
-          }
-          & > span::before {
-            top: 0;
-            transform: rotate(0);
-            transition: transform 0.5s;
-          }
-          & > span::after {
-            top: 0;
-            transform: rotate(90deg);
-            transition: transform 0.5s;
-          }
-        }
-        & ~ .HamburgerMenu-Box {
-          transition: transform 0.2s;
-          transform: translate(0);
-        }
+      & ~ .HamburgerMenu-Box {
+        transform: translate(0);
       }
     }
   }
-  @media (hover: none) {
-    .HamburgerMenu {
-      &-Button:hover::after {
-        background-color: inherit;
-      }
-      &-Item > a:hover {
-        background-color: inherit;
-      }
+}
+@media (hover: none) {
+  .HamburgerMenu {
+    &-Button:hover::after {
+      background-color: inherit;
+    }
+    &-Item > a:hover {
+      background-color: inherit;
     }
   }
-  
+}
