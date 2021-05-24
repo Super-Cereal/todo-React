@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { compose } from "redux";
 import { connect } from "react-redux";
+import { reset, SubmissionError } from "redux-form";
 
 import { toggleAddMenu, addNote } from "../../redux/notesReducer";
 import AddMenu from "./AddMenu";
@@ -10,6 +11,8 @@ import { addMenuOnSelector } from "./../../redux/notesSelector";
 
 const AddMenuContainer = (props) => {
   const [subjects, setSubjects] = useState([]);
+  const [showError, setShowError] = useState(false);
+
   const toggleMenu = (event) => {
     let bool = event.currentTarget.checked;
     props.toggleAddMenu(bool);
@@ -25,12 +28,19 @@ const AddMenuContainer = (props) => {
   const onSubmit = (data) => {
     let { title, subjects, color } = data;
     subjects = subjects.filter((s) => s);
+    if (subjects.length === 0) {
+      setShowError(true);
+      setTimeout(() => setShowError(false), 4000);
+      throw new SubmissionError({ _error: "You shoud add at least 1 subject" });
+    }
     props.addNote(title, subjects, color);
     props.toggleAddMenu(false);
+    setSubjects([]);
+    props.reset("addNoteForm");
   };
-
   return (
     <AddMenu
+      showError={showError}
       additionalClass={props.additionalClass}
       backgroundOn={props.backgroundOn}
       subjects={subjects}
@@ -45,8 +55,10 @@ const AddMenuContainer = (props) => {
 let mstp = (state) => ({
   backgroundOn: addMenuOnSelector(state),
 });
+let odtp = { toggleAddMenu, addNote, reset };
 
 export default compose(
-  connect(mstp, { toggleAddMenu, addNote }),
-  withTransparentBackground("AddMenu-Toggle", mstp)
+  connect(mstp, odtp),
+  withTransparentBackground("AddMenu-Toggle", mstp),
+  React.memo
 )(AddMenuContainer);

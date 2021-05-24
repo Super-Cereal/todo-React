@@ -29,16 +29,16 @@
   }
   &_color {
     &_orange {
-      background-color: orange;
+      background-color: $orange;
     }
     &_blue {
-      background-color: rgb(139, 208, 218);
+      background-color: $blue;
     }
     &_purple {
-      background-color: rgb(255, 66, 255);
+      background-color: $purple;
     }
     &_red {
-      background-color: rgb(153, 28, 28);
+      background-color: $red;
     }
   }
 }

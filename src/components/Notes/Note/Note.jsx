@@ -36,10 +36,18 @@ const Note = (props) => {
     <div className={`Note Note_color_${color}`}>
       <div className="Note-Title fontType_headline">{title}</div>
       <div className="Note-Subjects">{subjectItems}</div>
-      <div className="Note-Hr"></div>
-      <div className="Note-AccomplishedTasks">
-        <DropDownBox id={`AccomplishedTasks_${props.noteId}`} title="Accomplished tasks" children={aTItems} />
-      </div>
+      {aT.length ? (
+        <>
+          <div className="Note-Hr"></div>
+          <div className="Note-AccomplishedTasks">
+            <DropDownBox
+              id={`AccomplishedTasks_${props.noteId}`}
+              title="Accomplished tasks"
+              children={aTItems}
+            />
+          </div>
+        </>
+      ) : undefined}
     </div>
   );
 };

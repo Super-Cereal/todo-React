@@ -1,32 +1,18 @@
 let initialState = {
   notes: [
     {
-      id: 1,
-      title: "Great work",
-      subjects: ["Call David", "Read Drakula", "Walk the dog"],
-      accomplishedTasks: [],
-      color: "orange",
-    },
-    {
-      id: 2,
+      id: 0,
       title: "Sweet home",
       subjects: ["Call David", "Read Drakula", "Walk the dog"],
       accomplishedTasks: ["Freak some salt", "Meet mother"],
       color: "blue",
     },
     {
-      id: 3,
+      id: 1,
       title: "Meat room",
       subjects: ["Call David", "Read Drakula", "Walk the dog"],
       accomplishedTasks: [],
       color: "red",
-    },
-    {
-      id: 4,
-      title: "Friends & Love",
-      subjects: ["Call David", "Read Drakula", "Walk the dog"],
-      accomplishedTasks: ["Freak some salt", "Meet mother"],
-      color: "purple",
     },
   ],
   hamburgerMenuOn: false,

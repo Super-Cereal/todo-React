@@ -6,6 +6,15 @@
 @import "./setup/_mediaMixin.scss";
 @import "./setup/_fontsAndColors.scss";
 
+
+button {
+  display: block;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+
 @import "./common/withTransparentBackground.scss";
 
 @import "../../components/TopPanel/TopPanel.scss";
